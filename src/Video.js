@@ -3,7 +3,15 @@ import VideoFooter from './VideoFooter';
 import VideoSidebar from './VideoSidebar';
 import './Video.css';
 
-function Video({ url, channel, description, song, likes, messages, shares }) {
+function Video({
+  vidUrl,
+  channel,
+  description,
+  song,
+  likes,
+  messages,
+  shares,
+}) {
   const [playing, setPlaying] = useState(false);
   const videoRef = useRef(null);
 
@@ -24,7 +32,7 @@ function Video({ url, channel, description, song, likes, messages, shares }) {
         loop
         onClick={onVideoPress}
         ref={videoRef}
-        src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
+        src={vidUrl}
       ></video>
       <VideoFooter channel={channel} description={description} song={song} />
       <VideoSidebar likes={likes} messages={messages} shares={shares} />

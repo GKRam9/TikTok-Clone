@@ -1,26 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import Video from './Video';
-// import db from './firebase';
 import './App.css';
+import axios from './axios';
 
 function App() {
-  // const [videos, setVideos] = useState([]);
+  const [videos, setVideos] = useState([]);
 
-  // useEffect(() => {
-  //   db.collection('videos').onSnapshot((snapshot) =>
-  //     setVideos(snapshot.docs.map((doc) => doc.data()))
-  //   );
-  // }, []);
+  useEffect(() => {
+    async function fetchPosts() {
+      const response = await axios.get('/tiktok/data/posts');
+      setVideos(response.data);
+
+      return response;
+    }
+
+    fetchPosts();
+  }, []);
 
   return (
     // BEM
     <div className="app">
       <div className="app__videos">
-        <Video />
-        {/* {videos.map(
-          ({ url, channel, description, song, likes, messages, shares }) => (
+        {videos.map(
+          ({ vidUrl, channel, description, song, likes, messages, shares }) => (
             <Video
-              url={url}
+              vidUrl={vidUrl}
               channel={channel}
               song={song}
               likes={likes}
@@ -29,10 +33,12 @@ function App() {
               shares={shares}
             />
           )
-        )} */}
+        )}
       </div>
     </div>
   );
 }
 
 export default App;
+
+

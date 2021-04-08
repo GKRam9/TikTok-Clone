@@ -34,7 +34,7 @@
 
 .videoFooter__record {
   animation: spinTheRecord infinite 5s linear;
-  height: 50px;
+  height: 40px;
   filter: invert(1);
   position: absolute;
   bottom: 0;
